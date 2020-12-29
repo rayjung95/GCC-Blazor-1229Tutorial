@@ -11,15 +11,18 @@ namespace EmployeeManagement.Web.Pages
     {
         public IEnumerable<Employee> Employees { get; set; }
 
-        protected override Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
 
-            LoadEmployees(); return base.OnInitializedAsync();
+            //LoadEmployees();
+            await Task.Run(LoadEmployees);
+            //return base.OnInitializedAsync();
         }
 
 
         private void LoadEmployees()
         {
+            System.Threading.Thread.Sleep(2000);
             Employee e1 = new Employee
             {
                 EmployeeId = 1,
@@ -40,7 +43,7 @@ namespace EmployeeManagement.Web.Pages
                 DateOfBrith = new DateTime(1981, 12, 22),
                 Gender = Gender.Male,
                 Department = new Department { DepartmentId = 2, DepartmentName = "HR" },
-                PhotoPath = "images/Sam.jpg"
+                PhotoPath = "images/Sam.png"
             };
             Employee e3 = new Employee
             {
